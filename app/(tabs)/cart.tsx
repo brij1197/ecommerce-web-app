@@ -60,7 +60,7 @@ const CartItem=({item}:{item:CartItemType})=>{
             <Ionicons name='remove-outline' size={20} color={Colors.black} />
           </TouchableOpacity>
           <Text>1</Text>
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.quantityControl}>
             <Ionicons name='add-outline' size={20} color={Colors.black} />
           </TouchableOpacity>
         </View>
