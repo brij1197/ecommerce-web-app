@@ -22,7 +22,7 @@ const SignInScreen = (props: Props) => {
         }}
       />
       <View style={styles.container}>
-        <Text style={styles.title}>Create an account</Text>
+        <Text style={styles.title}>Login to your Account</Text>
         <InputField
           placeholder="Email Address"
           placeholderTextColor={Colors.gray}
@@ -34,11 +34,6 @@ const SignInScreen = (props: Props) => {
           placeholderTextColor={Colors.gray}
           secureTextEntry={true}
         />
-        <InputField
-          placeholder="Confirm Password"
-          placeholderTextColor={Colors.gray}
-          secureTextEntry={true}
-        />
         <TouchableOpacity style={styles.btn} onPress={() => {
           router.dismissAll();
           router.push('/(tabs)');
@@ -46,10 +41,10 @@ const SignInScreen = (props: Props) => {
           <Text style={styles.btnTxt}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.loginTxt}>
-          Already have an account?{" "}
-          <Link href={"/signin"} asChild>
+          Don't have an account?{" "}
+          <Link href={"/signup"} asChild>
             <TouchableOpacity>
-              <Text style={styles.loginTxtSpan}>SignIn</Text>
+              <Text style={styles.loginTxtSpan}>SignUp</Text>
             </TouchableOpacity>
           </Link>
         </Text>
