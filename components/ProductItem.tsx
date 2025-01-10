@@ -39,7 +39,7 @@ export default ProductItem;
 
 const styles = StyleSheet.create({
   container: {
-    width: width / 2 - 30,
+    width: width / 2 - 10,
   },
   productImg: {
     width: "100%",

@@ -26,10 +26,11 @@ const HomeScreen = (props: Props) => {
     const fetchCategories = async () => {
       try {
         const response = await require("../../data/db.json");
+        console.log(response.categories);
         setProducts(response.categories);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to load products:", error);
+        console.error("Failed to load categories:", error);
       }
     };
     fetchProducts();
