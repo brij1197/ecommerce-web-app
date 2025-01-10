@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -32,7 +31,21 @@ const SignUpScreen = (props: Props) => {
           placeholder="Email Address"
           placeholderTextColor={Colors.gray}
           autoCapitalize="none"
+          keyboardType="email-address"
         />
+        <InputField
+        placeholder="Password"
+        placeholderTextColor={Colors.gray}
+        secureTextEntry={true}
+      />
+      <InputField
+        placeholder="Confirm Password"
+        placeholderTextColor={Colors.gray}
+        secureTextEntry={true}
+      />
+      <TouchableOpacity style={styles.btn}>
+        <Text style={styles.btnTxt}>Create An Account</Text>
+      </TouchableOpacity>
       </View>
     </>
   );
@@ -65,4 +78,19 @@ const styles = StyleSheet.create({
     color: Colors.black,
     marginBottom: 20,
   },
+  btn:{
+   backgroundColor: Colors.primary,
+   paddingVertical: 14,
+   paddingHorizontal: 18,
+   borderRadius: 5,
+   alignSelf: "stretch",
+   alignItems: "center",
+   marginBottom: 20, 
+  },
+  btnTxt:{
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: "600",
+    letterSpacing: 1.2,
+  }
 });
