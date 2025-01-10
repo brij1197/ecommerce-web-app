@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
   quantityControl:{
     padding:5,
-    borderWidth:1,
+    borderWidth:2,
     borderColor:Colors.lightGray,
     borderRadius:5,
   },
