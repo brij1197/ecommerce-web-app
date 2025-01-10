@@ -58,6 +58,7 @@ const ImageSlider = ({ imageList }: Props) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
+        scrollEventThrottle={16}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
       <Pagination items={imageList} paginationIndex={paginationIndex} />

@@ -11,9 +11,24 @@ const Pagination = (props: Props) => {
   return (
     <View style={styles.container}>
       {props.items.map((item, index) => (
-        <View key={index} style={[styles.paginationDots, {backgroundColor:props.paginationIndex===index?Colors.primary:'#ccc'}]} />
+        <View
+          key={index}
+          style={[
+            styles.paginationDots,
+            {
+              backgroundColor:
+                props.paginationIndex === index ? Colors.primary : "#ccc",
+            },
+          ]}
+        />
       ))}
-      <Text>Pagination</Text>
+      <View style={styles.paginationNumberContainer}>
+        <View style={styles.paginationNumberBox}>
+          <Text style={styles.paginationText}>
+            {props.paginationIndex + 1}/{props.items.length}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -30,7 +45,22 @@ const styles = StyleSheet.create({
     height: 4,
     margin: 3,
     borderRadius: 5,
-    backgroundColor: '#ccc',
+  },
+  paginationNumberContainer: {
+    position: "absolute",
+    width: "100%",
+    paddingRight: 20,
+    alignItems: "flex-end",
+  },
+  paginationNumberBox: {
+    backgroundColor: Colors.extraLightGray,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+  },
+  paginationText: {
+    color: Colors.primary,
+    fontSize: 12,
   },
 });
 
