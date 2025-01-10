@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { ProductType } from "@/types/type";
@@ -34,7 +34,7 @@ const ProductDetails = (props: Props) => {
   };
 
   return (
-    <View>
+    <ScrollView>
       {product && (
         <>
           <ImageSlider imageList={product.images} />
@@ -56,13 +56,90 @@ const ProductDetails = (props: Props) => {
               <View style={styles.priceDiscount}>
                 <Text style={styles.priceDiscountText}>6% Off</Text>
               </View>
-              <Text style={styles.oldPrice}>${product.price+2}</Text>
+              <Text style={styles.oldPrice}>${product.price + 2}</Text>
             </View>
-            <Text>{product.description}</Text>
+            <Text style={styles.description}>{product.description}</Text>
+            <View style={styles.productVariationWrapper}>
+              <View style={styles.productVariationType}>
+                <Text style={styles.productVariationTitle}>Color</Text>
+                <View style={styles.productVariationValueWrapper}>
+                  <View
+                    style={{
+                      borderColor: Colors.primary,
+                      borderWidth: 1,
+                      borderRadius: 100,
+                      padding: 2,
+                    }}
+                  >
+                    <View
+                      style={[
+                        styles.productVariationColorValue,
+                        { backgroundColor: "#D4AF37" },
+                      ]}
+                    />
+                  </View>
+                  <View
+                    style={[
+                      styles.productVariationColorValue,
+                      { backgroundColor: "#333" },
+                    ]}
+                  />
+                  <View
+                    style={[
+                      styles.productVariationColorValue,
+                      { backgroundColor: "#8bc34a" },
+                    ]}
+                  />
+                  <View
+                    style={[
+                      styles.productVariationColorValue,
+                      { backgroundColor: "#2196f3" },
+                    ]}
+                  />
+                  <View
+                    style={[
+                      styles.productVariationColorValue,
+                      { backgroundColor: "#f44336" },
+                    ]}
+                  />
+                  <View
+                    style={[
+                      styles.productVariationColorValue,
+                      { backgroundColor: "#9c27b0" },
+                    ]}
+                  />
+                </View>
+              </View>
+              <View style={styles.productVariationType}>
+                <Text style={styles.productVariationTitle}>Size</Text>
+                <View style={styles.productVariationValueWrapper}>
+                  <View style={[styles.productVariationSizeValue,{borderColor:Colors.primary}]}>
+                    <Text style={[styles.productVariationSizeValueText,{color:Colors.primary,fontWeight:'bold'}]}>
+                      S
+                    </Text>
+                  </View>
+                  <View style={styles.productVariationSizeValue}>
+                    <Text style={styles.productVariationSizeValueText}>
+                      M
+                    </Text>
+                  </View>
+                  <View style={styles.productVariationSizeValue}>
+                    <Text style={styles.productVariationSizeValueText}>
+                      L
+                    </Text>
+                  </View>
+                  <View style={styles.productVariationSizeValue}>
+                    <Text style={styles.productVariationSizeValueText}>
+                      XL
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
           </View>
         </>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -82,40 +159,90 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: Colors.gray,
   },
-  title:{
+  title: {
     fontSize: 20,
     fontWeight: "400",
     color: Colors.black,
     letterSpacing: 0.6,
     lineHeight: 32,
   },
-  priceWrapper:{
+  priceWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    gap:5,
+    gap: 5,
     marginTop: 20,
   },
-  price:{
+  price: {
     fontSize: 18,
     fontWeight: "600",
     color: Colors.black,
   },
-  priceDiscount:{
+  priceDiscount: {
     backgroundColor: Colors.extraLightGray,
-    padding:5,
+    padding: 5,
     borderRadius: 5,
   },
-  priceDiscountText:{
+  priceDiscountText: {
     fontSize: 14,
     fontWeight: "400",
     color: Colors.primary,
   },
-  oldPrice:{
+  oldPrice: {
     fontSize: 16,
     fontWeight: "400",
     color: Colors.gray,
     textDecorationLine: "line-through",
-  }
+  },
+  description: {
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: "400",
+    color: Colors.black,
+    lineHeight: 24,
+    letterSpacing: 0.6,
+  },
+  productVariationWrapper: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 20,
+  },
+  productVariationType: {
+    gap: 5,
+    marginBottom: 10,
+    width: "50%",
+  },
+  productVariationTitle: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: Colors.black,
+  },
+  productVariationValueWrapper: {
+    flexDirection: "row",
+    gap: 5,
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  productVariationColorValue: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: Colors.extraLightGray,
+  },
+  productVariationSizeValue: {
+    width: 50,
+    height: 30,
+    borderRadius: 5,
+    backgroundColor: Colors.extraLightGray,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: Colors.lightGray,
+    borderWidth: 1,
+  },
+  productVariationSizeValueText: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: Colors.black,
+  },
 });
 
 export default ProductDetails;
