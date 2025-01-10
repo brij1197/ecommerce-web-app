@@ -1,22 +1,108 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Stack } from "expo-router";
+import { useHeaderHeight } from "@react-navigation/elements";
+import { NotificationType } from "@/types/type";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
-type Props = {}
+type Props = {};
 
 const NotificationsScreen = (props: Props) => {
-  return (
-    <View style={styles.container}>
-      <Text>Notifications Screen</Text>
-    </View>
-  )
-}
+  const [notifications, setNotifications] = useState<NotificationType[]>([]);
 
-export default NotificationsScreen
+  useEffect(() => {
+    getNotifications();
+  }, []);
+
+  const getNotifications = async () => {
+    try {
+      const response = await require("../../data/db.json");
+      setNotifications(response.notifications);
+    } catch (error) {
+      console.error("Failed to load notifications:", error);
+    }
+  };
+
+  const headerHeight = useHeaderHeight();
+  return (
+    <>
+      <Stack.Screen options={{ headerShown: true, headerTransparent: true }} />
+      <View style={[styles.container, { marginTop: headerHeight }]}>
+        <FlatList
+          data={notifications}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item, index }) => (
+            <Animated.View
+              style={styles.notificationWrapper}
+              entering={FadeInDown.delay(300 + index * 100).duration(500)}
+            >
+              <View style={styles.notificationIcon}>
+                <Ionicons
+                  name="notifications-outline"
+                  size={20}
+                  color={Colors.black}
+                />
+              </View>
+              <View style={styles.notificationInfo}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.notificationTitle}>{item.title}</Text>
+                  <Text style={styles.notificationMessage}>
+                    {item.timestamp}
+                  </Text>
+                </View>
+                <Text style={styles.notificationMessage}>{item.message}</Text>
+              </View>
+            </Animated.View>
+          )}
+        />
+      </View>
+    </>
+  );
+};
+
+export default NotificationsScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+    paddingHorizontal: 20,
+  },
+  notificationWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom: 10,
+    borderColor: Colors.lightGray,
+    backgroundColor: Colors.extraLightGray,
+    borderRadius: 5,
+  },
+  notificationIcon: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  notificationInfo: {
+    flex: 1,
+  },
+  notificationTitle: {
+    fontWeight: "500",
+    fontSize: 16,
+    color: Colors.black,
+  },
+  notificationMessage: {
+    fontSize: 14,
+    color: Colors.gray,
+    marginTop: 5,
+    lineHeight: 20,
+  },
+});

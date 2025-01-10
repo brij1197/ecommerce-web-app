@@ -8,6 +8,9 @@ import {
 import React from "react";
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { Colors } from "@/constants/Colors";
+import Animated, { FadeInRight } from "react-native-reanimated";
+import SocialLoginButtons from "@/components/SocialLoginButtons";
 
 type Props = {};
 
@@ -28,17 +31,27 @@ const WelcomeScreen = (props: Props) => {
           style={styles.background}
         >
           <View style={styles.wrapper}>
-            <Text>Welcome Screen</Text>
-            <Link href={"/signin"} asChild>
-              <TouchableOpacity>
-                <Text>Go to SignIn Screen</Text>
-              </TouchableOpacity>
-            </Link>
-            <Link href={"/signup"} asChild>
-              <TouchableOpacity>
-                <Text>Go to SignUp Screen</Text>
-              </TouchableOpacity>
-            </Link>
+            <Animated.Text
+              style={styles.title}
+              entering={FadeInRight.delay(300).duration(300).springify()}
+            >
+              ShopX
+            </Animated.Text>
+            <Animated.Text
+              style={styles.description}
+              entering={FadeInRight.delay(500).duration(300).springify()}
+            >
+              Discover Your Style
+            </Animated.Text>
+            <SocialLoginButtons emailHref={'/signup'}/>
+            <Text style={styles.loginTxt}>
+              Already have an account?{" "}
+              <Link href={"/signin"} asChild>
+                <TouchableOpacity>
+                  <Text style={styles.loginTxtSpan}>SignIn</Text>
+                </TouchableOpacity>
+              </Link>
+            </Text>
           </View>
         </LinearGradient>
       </View>
@@ -67,5 +80,28 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     paddingHorizontal: 20,
     alignItems: "center",
+  },
+  title: {
+    fontSize: 22,
+    color: Colors.primary,
+    fontWeight: "700",
+    letterSpacing: 2.4,
+    marginBottom: 5,
+  },
+  description: {
+    fontSize: 14,
+    color: Colors.gray,
+    lineHeight: 30,
+    marginBottom: 20,
+  },
+  loginTxt: {
+    marginTop: 30,
+    fontSize: 14,
+    lineHeight: 24,
+    color: Colors.black,
+  },
+  loginTxtSpan: {
+    color: Colors.primary,
+    fontWeight: "600",
   },
 });
