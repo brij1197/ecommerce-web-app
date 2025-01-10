@@ -53,7 +53,12 @@ const ProductDetails = (props: Props) => {
             <Text style={styles.title}>{product.title}</Text>
             <View style={styles.priceWrapper}>
               <Text style={styles.price}>${product.price}</Text>
+              <View style={styles.priceDiscount}>
+                <Text style={styles.priceDiscountText}>6% Off</Text>
+              </View>
+              <Text style={styles.oldPrice}>${product.price+2}</Text>
             </View>
+            <Text>{product.description}</Text>
           </View>
         </>
       )}
@@ -94,6 +99,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: Colors.black,
+  },
+  priceDiscount:{
+    backgroundColor: Colors.extraLightGray,
+    padding:5,
+    borderRadius: 5,
+  },
+  priceDiscountText:{
+    fontSize: 14,
+    fontWeight: "400",
+    color: Colors.primary,
+  },
+  oldPrice:{
+    fontSize: 16,
+    fontWeight: "400",
+    color: Colors.gray,
+    textDecorationLine: "line-through",
   }
 });
 
