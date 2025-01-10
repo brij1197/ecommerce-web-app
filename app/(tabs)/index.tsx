@@ -1,8 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ProductType } from "@/types/type";
 import { Stack } from "expo-router";
 import Header from "@/components/Header";
+import ProductList from "@/components/ProductList";
 
 type Props = {};
 
@@ -26,24 +27,11 @@ const HomeScreen = (props: Props) => {
   return (
     <>
       <Stack.Screen options={{ headerShown: true, header: () => <Header /> }} />
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <FlatList
-          data={products}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ index, item }) => <Text>{item.title}</Text>}
-        />
-      </View>
+      <ProductList products={products} />
     </>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+const styles = StyleSheet.create({});
