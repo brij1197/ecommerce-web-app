@@ -30,10 +30,11 @@ const ExploreScreen = (props: Props) => {
       <FlatList
         data={categories}
         keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <View style={styles.itemWrapper}>
-            <Text>{item.name}</Text>
-            <Image source={{ uri: item.image }} style={{width:100,height:100}} />
+            <Text style={styles.itemTitle}>{item.name}</Text>
+            <Image source={{ uri: item.image }} style={{width:100,height:100, borderRadius:10}} />
           </View>
         )}
       />
@@ -54,8 +55,13 @@ const styles = StyleSheet.create({
     justifyContent:"space-between",
     alignItems:"center",
     marginBottom:20,
-    backgroundColor: Colors.lightGray,
+    backgroundColor: Colors.extraLightGray,
     padding:10,
     borderRadius:10
+  },
+  itemTitle:{
+    fontSize:16,
+    fontWeight:'500',
+    color:Colors.black
   }
 });
