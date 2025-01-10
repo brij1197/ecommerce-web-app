@@ -50,7 +50,7 @@ const ProductDetails = (props: Props) => {
           headerTransparent: true,
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="arrow-back" size={24} color={Colors.black} />\
+              <Ionicons name="arrow-back" size={24} color={Colors.black} />
             </TouchableOpacity>
           ),
           headerRight: () => (
