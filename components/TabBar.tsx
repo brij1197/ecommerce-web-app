@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import { BottomTabBarProps} from '@react-navigation/bottom-tabs';
+import { View, Text, TouchableOpacity } from "react-native";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import TabBarButton from "./TabBarButton";
 
-export function TabBar({ state, descriptors, navigation } : BottomTabBarProps) {
+export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: "row" }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -17,7 +18,7 @@ export function TabBar({ state, descriptors, navigation } : BottomTabBarProps) {
 
         const onPress = () => {
           const event = navigation.emit({
-            type: 'tabPress',
+            type: "tabPress",
             target: route.key,
             canPreventDefault: true,
           });
@@ -29,26 +30,20 @@ export function TabBar({ state, descriptors, navigation } : BottomTabBarProps) {
 
         const onLongPress = () => {
           navigation.emit({
-            type: 'tabLongPress',
+            type: "tabLongPress",
             target: route.key,
           });
         };
 
         return (
-          <TouchableOpacity
+          <TabBarButton
             key={route.name}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
-          >
-            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-              {label}
-            </Text>
-          </TouchableOpacity>
+            isFocused={isFocused}
+            routeName={route.name}
+            label={label}
+          />
         );
       })}
     </View>
