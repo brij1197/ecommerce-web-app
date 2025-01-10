@@ -26,7 +26,7 @@ const ProductList = ({products}: Props) => {
       <FlatList
         data={products}
         numColumns={2}
-        contentContainerStyle={{
+        columnWrapperStyle={{
           justifyContent: "space-between",
           marginBottom: 20,
         }}
