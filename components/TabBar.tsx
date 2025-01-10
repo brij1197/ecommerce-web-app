@@ -1,14 +1,9 @@
-import { View, Platform, Text } from "react-native";
-import { useLinkBuilder, useTheme } from "@react-navigation/native";
-import { PlatformPressable } from "@react-navigation/elements";
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import { View, Text, TouchableOpacity } from 'react-native';
+import { BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
-  const { colors } = useTheme();
-  const { buildHref } = useLinkBuilder();
-
+export function TabBar({ state, descriptors, navigation } : BottomTabBarProps) {
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: 'row' }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -22,7 +17,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
         const onPress = () => {
           const event = navigation.emit({
-            type: "tabPress",
+            type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
           });
@@ -34,25 +29,26 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
         const onLongPress = () => {
           navigation.emit({
-            type: "tabLongPress",
+            type: 'tabLongPress',
             target: route.key,
           });
         };
 
         return (
-          <PlatformPressable
-            href={buildHref(route.name, route.params)}
+          <TouchableOpacity
+            key={route.name}
+            accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarButtonTestID}
+            testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
             style={{ flex: 1 }}
           >
-            <Text style={{ color: isFocused ? colors.primary : colors.text }}>
+            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
               {label}
             </Text>
-          </PlatformPressable>
+          </TouchableOpacity>
         );
       })}
     </View>
