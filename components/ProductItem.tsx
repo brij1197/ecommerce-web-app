@@ -1,7 +1,7 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, View , TouchableOpacity} from "react-native";
 import React from "react";
 import { ProductType } from "@/types/type";
-import { TouchableOpacity } from "react-native-gesture-handler";
+
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import Animated, { FadeInDown } from "react-native-reanimated";
