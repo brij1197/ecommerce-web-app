@@ -30,7 +30,6 @@ const CartScreen = (props: Props) => {
     <Stack.Screen options={{ headerShown: true, headerTransparent:true }} />
     <View style={[styles.container, {marginTop:headerHeight}]}>
       <FlatList data={items} keyExtractor={(item)=>item.id.toString()} renderItem={({item,index})=><CartItem item={item}/> }/>
-      <Text>Cart Screen</Text>
     </View>
     <View style={styles.footer}>
       <View style={styles.priceInfoWrapper}>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     alignItems:"center",
     marginBottom:10,
-    backgroundColor:Colors.lightGray,
+    backgroundColor:Colors.extraLightGray,
     padding:10,
     borderWidth:StyleSheet.hairlineWidth,
     borderRadius:5,
