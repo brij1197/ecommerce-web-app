@@ -1,22 +1,27 @@
 # E-Commerce-App
 
-## Get started
+## Get Started
 
-1. Install dependencies
+### Install Dependencies
+To install the necessary dependencies, run:
+```bash
+npm install
+```
 
-   ```bash
-   npm install
-   ```
+### Start the App
+To start the application, use:
+```bash
+npx expo start
+```
 
-2. Start the app
+## Extra Dependencies
+The following additional dependencies were added to enhance the app functionality and visuals:
+- **Axios**: For making API requests.
+- **Expo Linear Gradient**: To add appealing gradient effects.
+- **React Native SVG**: For rendering scalable vector graphics.
+- **React Native SVG Transformer**: To enable custom SVG transformations.
 
-   ```bash
-    npx expo start
-   ```
-
-Extra dependencies added here
-
-- [Axios](https://www.npmjs.com/package/axios)
-- [Expo Linear Gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/)
-- [React Native SVG](https://github.com/software-mansion/react-native-svg#installation)
-- [React Native SVG Transformer](https://github.com/kristerkari/react-native-svg-transformer#readme)
+## Development Notes
+Ensure you have the following tools installed:
+- Node.js (v22 or newer)
+- Expo CLI
