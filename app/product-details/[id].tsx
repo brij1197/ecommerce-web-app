@@ -26,7 +26,6 @@ const ProductDetails = (props: Props) => {
   const getProductDetails = async (id: any) => {
     try {
       const response = await require("../../data/db.json");
-      console.log(response.products);
       const product = response.products.find(
         (product: any) => product.id.toString() === id.toString()
       );
