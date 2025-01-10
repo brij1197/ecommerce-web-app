@@ -5,6 +5,7 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { NotificationType } from "@/types/type";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 type Props = {};
 
@@ -33,7 +34,10 @@ const NotificationsScreen = (props: Props) => {
           data={notifications}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
-            <View style={styles.notificationWrapper}>
+            <Animated.View
+              style={styles.notificationWrapper}
+              entering={FadeInDown.delay(300 + index * 100).duration(500)}
+            >
               <View style={styles.notificationIcon}>
                 <Ionicons
                   name="notifications-outline"
@@ -50,14 +54,15 @@ const NotificationsScreen = (props: Props) => {
                   }}
                 >
                   <Text style={styles.notificationTitle}>{item.title}</Text>
-                  <Text style={styles.notificationMessage}>{item.timestamp}</Text>
+                  <Text style={styles.notificationMessage}>
+                    {item.timestamp}
+                  </Text>
                 </View>
                 <Text style={styles.notificationMessage}>{item.message}</Text>
               </View>
-            </View>
+            </Animated.View>
           )}
         />
-        <Text>Notifications Screen</Text>
       </View>
     </>
   );
@@ -98,6 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.gray,
     marginTop: 5,
-    lineHeight:20,
+    lineHeight: 20,
   },
 });
